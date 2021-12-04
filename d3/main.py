@@ -28,30 +28,25 @@ def part_one(data):
     return int(gamma_rate, 2), int(epsilon_rate, 2)
 
 
-def exhaustive_loop(data, val):
-    result = ''
+def recursion(data, cycle):
+    """Loop the list items bit by bit and on every loop let the ones continue that match with the most common bit."""
+    if len(data) > 1:
+        for index in range(cycle):
+        first_bits = Counter([x[0] for x in data])
+        print(first_bits)
+        ogr_val = first_bits.most_common()[0][0]
+        print(ogr_val)
+        ogr_data = [x for x in data if x[0] == ogr_val]
 
-    if val == 'ogr':
-        idx = 0
+        recursion(ogr_data)
     else:
-        idx = -1
-
-    for index in range(len(data[0])):
-        counts = Counter([x[index] for x in data])
-        print(list(counts.values()))
-
-        if all(x == list(counts.values())[0] for x in list(counts.values())):
-            result += str(idx+1)
-        else:
-            result += str(counts.most_common()[idx][0])
-
-    print(result)
-    return int(result, 2)
+        return data[0]
 
 
 def part_two(data):
     """Solution for the 2nd task."""
     first_bits = Counter([x[0] for x in data])
+    loop_count = len(data[0])
 
     ogr_val = first_bits.most_common()[0][0]
     csr_val = first_bits.most_common()[-1][0]
@@ -59,10 +54,11 @@ def part_two(data):
     ogr_data = [x for x in data if x[0] == ogr_val]
     csr_data = [x for x in data if x[0] == csr_val]
 
-    ogr_value = exhaustive_loop(ogr_data, 'ogr')
-    csr_value = exhaustive_loop(csr_data, 'csr')
+    ogr_value = recursion(ogr_data, loop_count)
 
-    print(ogr_value, csr_value)
+    print(ogr_val, csr_val)
+    print(ogr_data, csr_data)
+    #print(ogr_value)
 
 
 def main():
