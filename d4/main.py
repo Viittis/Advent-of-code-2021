@@ -80,7 +80,7 @@ def main():
     print(f'The correct answer is {result}')  # 8442
 
     result_two = part_two(numbers, boards)
-    print(f'The correct answer is {result_two}')  # 8442
+    print(f'The correct answer is {result_two}')  # 4590
 
 
 if __name__ == '__main__':
