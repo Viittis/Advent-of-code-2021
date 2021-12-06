@@ -1,5 +1,6 @@
 # https://adventofcode.com/2021/day/5
 import numpy as np
+import itertools
 
 data_in = 'data2.txt'  # External data file
 
@@ -42,8 +43,8 @@ def main():
 
     for line in filter_data:
         exclude_line = [x for x in filter_data if not x == line]
-        for line2 in exclude_line:
-            result += line_intersect(line, line2)
+        #for line2 in exclude_line:
+            #result += line_intersect(line, line2)
 
     print(result)
 
